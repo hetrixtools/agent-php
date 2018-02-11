@@ -59,7 +59,9 @@ function find_in_array($needle,$subject) {
     }
 }
 function intval_from_ram($needle,$subject) {
-    return intval(explode(":",find_in_array($needle,$subject))[1]);
+    $val = explode(":",find_in_array($needle,$subject));
+    $val = intval($val[1]);
+    return $val;
 }
 function get_cpu_stats() {
 	$data = file('/proc/stat');
@@ -126,7 +128,8 @@ $net = get_network_usage($net1,$net2);
 // Operating System
 if(is_readable('/etc/lsb-release')) {
     $os = file('/etc/lsb-release');
-    $os = explode('"',$os[3])[1];
+    $os = explode('"',$os[3]);
+    $os = $os[1];
 }
 elseif(is_readable('/etc/debian_version')) {$os = "Debian ".file_get_contents('/etc/debian_version');}
 elseif(is_readable('/etc/redhat-release')) {$os = file_get_contents('/etc/redhat-release');}
@@ -141,10 +144,12 @@ $uptime = intval(file_get_contents('/proc/uptime'));
 $cpu_info = file('/proc/cpuinfo');
 
 // CPU Model
-$cpu_model = base64_encode(explode(": ",$cpu_info[4])[1]);
+$cpu_model = explode(": ",$cpu_info[4]);
+$cpu_model = base64_encode($cpu_model[1]);
 
 // CPU Speed
-$cpu_speed = intval(explode(": ",$cpu_info[7])[1]);
+$cpu_speed = explode(": ",$cpu_info[7]);
+$cpu_speed = intval($cpu_speed[1]);
 
 // CPU Cores
 $cpu_cores = $cpu[2];
@@ -179,7 +184,8 @@ if($swap_size > 0) {
 // Disk Usage
 $disk_total = disk_total_space(dirname(__FILE__));
 $disk_used = $disk_total-disk_free_space(dirname(__FILE__));
-$disk_path = "/".explode("/",dirname(__FILE__))[1];
+$disk_path = explode("/",dirname(__FILE__));
+$disk_path = "/".$disk_path[1];
 $disk = base64_encode($disk_path.",".$disk_total.",".$disk_used.";");
 
 // Network Usage
