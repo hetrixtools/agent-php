@@ -186,7 +186,7 @@ $disk_total = disk_total_space(dirname(__FILE__));
 $disk_used = $disk_total-disk_free_space(dirname(__FILE__));
 $disk_path = explode("/",dirname(__FILE__));
 $disk_path = "/".$disk_path[1];
-$disk = base64_encode($disk_path.",".$disk_total.",".$disk_used.";");
+$disk = base64_encode($disk_path.",".intval($disk_total).",".intval($disk_used).";");
 
 // Network Usage
 $rx = round($net[0]/$seconds); // Incoming
