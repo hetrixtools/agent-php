@@ -85,8 +85,8 @@ function get_cpu_usage($stat1,$stat2) {
 		$dif['idle'] = $stat2[$i]['idle'] - $stat1[$i]['idle'];
 		$dif['iowait'] = $stat2[$i]['iowait'] - $stat1[$i]['iowait'];
 		$total = array_sum($dif);
-		$total_idle += (1000*$dif['idle']/$total+5)/10;
-		$total_iowait += (1000*$dif['iowait']/$total+5)/10;
+		$total_idle += (1000*$dif['idle']/$total)/10;
+		$total_iowait += (1000*$dif['iowait']/$total)/10;
 	}
 	$cpu_usage = round(100 - $total_idle / count($stat1),2);
 	$cpu_iowait = round($total_iowait / count($stat1),2);
