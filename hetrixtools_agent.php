@@ -197,29 +197,29 @@ class HetrixtoolsAgent
 
 	private function get_network_stats($interface)
 	{
-    	$network = file('/proc/net/dev');
-    	$net = $this->find_in_array($interface, $network);
-    	$net = preg_split('/\s+/', $net);
+		$network = file('/proc/net/dev');
+		$net = $this->find_in_array($interface, $network);
+		$net = preg_split('/\s+/', $net);
 
 		return array($net[2],$net[10]);
 	}
 
 	private function get_network_usage($net1, $net2)
 	{
-    	$rx = $net2[0] - $net1[0];
-    	$tx = $net2[1] - $net1[1];
-    	
+		$rx = $net2[0] - $net1[0];
+		$tx = $net2[1] - $net1[1];
+
 		return array($rx, $tx);
 	}
 
 	private function find_in_array($needle, $subject)
 	{
-    	foreach ($subject as $key => $value) {
-        	if (stristr($value, $needle)) {
+		foreach ($subject as $key => $value) {
+			if (stristr($value, $needle)) {
 
 				return $value;
-        	}
-    	}
+			}
+		}
 	}
 
 	private function intval_from_ram($needle, $subject)
