@@ -216,31 +216,6 @@ function microtime_float() {
 
 }
 
-// CURL replacement for external file_get_contents()
-// Because some web hosts do not allow external file_get_contents()
-function file_get_contents_curl($url) {
-
-	// Initiate
-	$ch = curl_init();
-
-	// Set options
-	curl_setopt($ch,CURLOPT_AUTOREFERER,TRUE);
-	curl_setopt($ch,CURLOPT_HEADER,0);
-	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-	curl_setopt($ch,CURLOPT_URL,$url);
-	curl_setopt($ch,CURLOPT_FOLLOWLOCATION,TRUE);
-
-	// Execute
-	$data = curl_exec($ch);
-
-	// Close
-	curl_close($ch);
-
-	// Output
-	return $data;
-
-}
-
 ///////////////
 // Functions //
 ///////////////
