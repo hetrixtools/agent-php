@@ -325,7 +325,7 @@ $post = "v=$version&a=1&s=$SID&d=$post_data";
 file_put_contents('hetrixtools_agent.log',$post);
 
 // Post the data to HetrixTools
-$ch = curl_init('https://sm.hetrixtools.com');
+$ch = curl_init('https://sm.hetrixtools.net');
 curl_setopt($ch,CURLOPT_POST,1);
 curl_setopt($ch,CURLOPT_POSTFIELDS,$post);
 curl_setopt($ch,CURLOPT_FOLLOWLOCATION,1);
