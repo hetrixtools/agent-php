@@ -322,7 +322,7 @@ $post_data = "$os|$uptime|$cpu_model|$cpu_speed|$cpu_cores|$cpu_usage|$cpu_iowai
 $post = "v=$version&a=1&s=$SID&d=$post_data";
 
 // Log the current post string (for debugging)
-file_put_contents('hetrixtools_agent.log',$post);
+file_put_contents(dirname(__FILE__).'/hetrixtools_agent.log',$post);
 
 // Post the data to HetrixTools
 $ch = curl_init('https://sm.hetrixtools.net');
